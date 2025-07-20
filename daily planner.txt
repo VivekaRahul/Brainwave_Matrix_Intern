@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAILY PLANNER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS styles start here */
+        body {
+            font-family: 'Inter', sans-serif; /* Changed font to Inter for consistency */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+            min-height: 100vh; /* Ensure full viewport height */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image.jpg') no-repeat center center/cover; /* Ensure image.jpg is in the same folder */
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            width: 90%;
+            max-width: 1200px;
+            background-color: #acc5ed; /* Sky Blue */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            gap: 25px;
+            align-items: stretch; /* Added to make direct children stretch vertically */
+            margin-top: 20px; /* Added margin-top for spacing below header */
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #2F4F4F; /* Dark Slate Gray */
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Container for only the week days */
+        .header-week-days-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3em;
+            margin-bottom: 35px;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%; /* Ensure it takes full width */
+        }
+
+        .week-days {
+            display: flex;
+            gap: 15px; /* Ensure no internal borders or dividers */
+        }
+
+        .day-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #F5F5DC; /* Beige for default circles */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #000000;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            cursor: pointer; /* Added for interaction */
+        }
+
+        .day-circle:hover {
+            transform: translateY(-2px);
+        }
+
+        .day-circle.highlight {
+            background-color: #3CB371; /* Medium Sea Green - a vibrant green */
+            color: white;
+            box-shadow: 0 0 10px rgba(60, 179, 113, 0.8);
+        }
+
+        .left-panel, .center-panel, .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            flex: 1; /* All panels will now try to be the same height */
+        }
+
+        /* Keep the width ratio for the center panel */
+        .center-panel {
+            flex: 1.5;
+        }
+
+        .right-panel {
+            flex: 1;
+        }
+
+        /* SCHEDULE Styling */
+        .schedule {
+            border: 1px solid #f9f9f9; /* Light Blue border */
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #b0e2f1; /* Light Cyan for schedule background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: #000000;
+            flex-grow: 1; /* Added to make schedule box fill available vertical space within its panel */
+            display: flex; /* Make it a flex container */
+            flex-direction: column; /* Stack its content vertically */
+        }
+
+        .schedule h2 {
+            margin-top: 0;
+            color: #2F4F4F; /* Dark Slate Gray */
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            flex-shrink: 0; /* Prevent title from shrinking */
+        }
+
+        .time-slot {
+            display: flex;
+            margin-bottom: 8px;
+            align-items: center;
+            flex-grow: 1; /* Allow each time slot to grow and distribute space */
+        }
+
+        .time {
+            font-weight: bold;
+            color: #000000; /* Steel Blue */
+            width: 80px;
+            flex-shrink: 0;
+            font-size: 0.95em;
+        }
+
+        .event {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border-left: 4px solid #d0dbf9; /* Royal Blue for event bar */
+            margin-left: 15px;
+            background-color: #F0F8FF; /* Alice Blue for event background */
+            border-radius: 6px;
+            color: #333;
+            min-height: 25px;
+            line-height: 1.4;
+            outline: none; /* Remove default focus outline for contenteditable */
+        }
+
+        .event:empty::before {
+            content: "Add event...";
+            color: #99AABB;
+            font-style: italic;
+        }
+        .event:focus {
+            border: 1px solid #6a8bbd; /* Highlight on focus */
+            box-shadow: 0 0 5px rgba(106, 139, 189, 0.5);
+        }
+
+        /* List & Box Styling */
+        .list-box, .section-box {
+            border: 1px solid #e7e7f7; /* Lavender border */
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f5f5f5; /* Alice Blue default background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-grow: 1; /* Make these boxes fill vertical space */
+            display: flex; /* Make it a flex container */
+            flex-direction: column; /* Stack its content vertically */
+        }
+
+        /* Specific colors for TO-DO LIST and PRIORITY LIST */
+        .left-panel .list-box:first-of-type { /* TO-DO LIST */
+            background-color: #f9f5d2; /* Lemon Chiffon */
+            border-color: #000000;
+        }
+        .right-panel .list-box:first-of-type { /* PRIORITY LIST */
+            background-color: #eab5dd; /* Misty Rose */
+            border-color: #000000;
+        }
+
+        .list-box h3, .section-box h3 {
+            margin-top: 0;
+            color: #2F4F4F; /* Dark Slate Gray */
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+            border-color: #000000;
+            flex-shrink: 0; /* Prevent titles from shrinking */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1; /* Allow the ul to fill available vertical space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute items evenly if there's extra space */
+        }
+
+        ul li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Allow list items to grow */
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        ul li input[type="checkbox"] {
+            margin-right: 12px;
+            flex-shrink: 0;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .input-line {
+            width: 100%;
+            border: none;
+            background: transparent;
+            border-bottom: 1px solid #B0C4DE; /* Light steel blue for input line */
+            padding: 5px 0;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 0.95em;
+        }
+
+        .input-line::placeholder {
+            color: #8899AA;
+        }
+        .input-line:focus {
+            border-bottom: 1px solid #6a8bbd; /* Highlight on focus */
+        }
+
+
+        .box-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex-grow: 1; /* Make the grid itself grow to fill space */
+        }
+
+        /* Specific colors for sections in the right panel grid */
+        .box-grid .section-box:nth-child(1) { /* MEETINGS */
+            background-color: #bfedc6; /* Light Green */
+            border-color: #000000;
+        }
+        .box-grid .section-box:nth-child(2) { /* PROJECTS */
+            background-color: #bfedc6; /* Light Green */
+            border-color: #000000;
+        }
+        .box-grid .section-box:nth-child(3) { /* WORK PLAN */
+            background-color: hsl(66, 91%, 91%); /* Light Yellowish Green */
+            border-color: #000000;
+        }
+        .box-grid .section-box:nth-child(4) { /* DEADLINE */
+            background-color: hsl(66, 91%, 91%); /* Light Yellowish Green */
+            border-color: #000000;
+        }
+
+        /* Mood & Notes Section */
+        .mood-section span {
+            display: block;
+            text-align: center;
+            font-size: 1.1em;
+            color: #2F4F4F;
+            margin-bottom: 15px;
+        }
+        .mood-section{
+            border-color: #000000;
+            flex-shrink: 0; /* Prevent mood section from shrinking if content is small */
+        }
+        .mood-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .mood-options button {
+            font-size: 25px;
+            padding: 8px 12px;
+            background-color: #9d9df0; /* Light Purple */
+            border-color: #000000;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .mood-options button:hover {
+            transform: scale(1.1);
+            background-color: #E6E6FA; /* Lavender on hover */
+        }
+
+        .mood-options .selected {
+            background-color: #FFD700; /* Gold */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+            transform: scale(1.15);
+        }
+
+        .notes-section textarea {
+            min-height: 150px;
+            resize: vertical;
+            padding: 10px;
+            font-size: 0.95em;
+            background-color: #ec8e8e; /* Light Red */
+            flex-grow: 1; /* Allow textarea to grow and fill space */
+            border: 1px solid #B0C4DE; /* Match input-line border */
+            border-radius: 8px; /* Added border-radius */
+            outline: none;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        .notes-section textarea:focus {
+            border-color: #6a8bbd; /* Highlight on focus */
+            box-shadow: 0 0 5px rgba(106, 139, 189, 0.5);
+        }
+        .notes-section{
+            border-color: #000000;
+        }
+
+        .right-panel .list-box:last-of-type { /* This targets the Appointments list-box */
+            border-color: #000000; /* Changed from default to black */
+        }
+
+        /* Save Button & Pop-up */
+        #saveButton {
+            background-color: #32CD32; /* Lime Green */
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #saveButton:hover {
+            background-color: #228B22; /* Forest Green */
+            transform: translateY(-3px);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column; /* Stack panels vertically */
+                align-items: center;
+            }
+            .left-panel, .center-panel, .right-panel {
+                width: 100%; /* Full width for panels */
+                max-width: 600px; /* Limit overall width for better readability */
+            }
+            .box-grid {
+                grid-template-columns: 1fr; /* Single column for grid on smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            .header-week-days-section {
+                font-size: 1em;
+                padding: 10px 15px;
+            }
+            .day-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9em;
+            }
+            .container {
+                padding: 15px;
+                gap: 15px;
+            }
+            .list-box, .section-box, .schedule {
+                padding: 15px;
+            }
+            .list-box h3, .section-box h3, .schedule h2 {
+                font-size: 1.2em;
+            }
+            .time {
+                width: 60px;
+            }
+            .event, .input-line, .notes-section textarea {
+                font-size: 0.85em;
+            }
+            .mood-options button {
+                font-size: 20px;
+                width: 40px;
+                height: 40px;
+            }
+            #saveButton {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+
+        /* CSS ends here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DAILY PLANNER</h1>
+        <div class="header-week-days-section">
+            <div class="week-days">
+                <span class="day-circle" data-day="0">S</span>
+                <span class="day-circle" data-day="1">M</span>
+                <span class="day-circle" data-day="2">T</span>
+                <span class="day-circle" data-day="3">W</span>
+                <span class="day-circle" data-day="4">T</span>
+                <span class="day-circle" data-day="5">F</span>
+                <span class="day-circle" data-day="6">S</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="list-box">
+                <h3>TO-DO LIST</h3>
+                <ul>
+                    <li><input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item..."></li>
+                    <li><input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item..."></li>
+                    <li><input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item..."></li>
+                    <li><input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item..."></li>
+                    <li><input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item..."></li>
+                </ul>
+            </div>
+            <div class="mood-section list-box">
+                <span><h3>MY MOODS</h3></span>
+                <div class="mood-options">
+                    <button>😊</button>
+                    <button>😐</button>
+                    <button>😔</button>
+                    <button>😠</button>
+                    <button>😴</button>
+                </div>
+            </div>
+            <div class="section-box notes-section">
+                <h3>NOTES</h3>
+                <textarea class="input-line" rows="5" placeholder="General notes for the day..."></textarea>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <div class="schedule">
+                <h2>SCHEDULE</h2>
+                <div class="time-slot"><div class="time">06:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">07:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">08:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">09:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">10:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">11:00 AM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">12:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">01:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">02:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">03:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">04:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">05:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">06:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">07:00 PM</div><div class="event" contenteditable="true"></div></div>
+                <div class="time-slot"><div class="time">08:00 PM</div><div class="event" contenteditable="true"></div></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="list-box">
+                <h3>PRIORITY LIST</h3>
+                <ul>
+                    <li><input type="text" class="input-line" placeholder="High priority item 1"></li>
+                    <li><input type="text" class="input-line" placeholder="High priority item 2"></li>
+                    <li><input type="text" class="input-line" placeholder="Medium priority item 3"></li>
+                    <li><input type="text" class="input-line" placeholder="Low priority item 4"></li>
+                </ul>
+            </div>
+            <div class="box-grid">
+                <div class="section-box">
+                    <h3>MEETINGS</h3>
+                    <textarea class="input-line" rows="3" placeholder="Upcoming meetings..."></textarea>
+                </div>
+                <div class="section-box">
+                    <h3>PROJECTS</h3>
+                    <textarea class="input-line" rows="3" placeholder="Current projects..."></textarea>
+                </div>
+                <div class="section-box">
+                    <h3>WORK PLAN</h3>
+                    <textarea class="input-line" rows="3" placeholder="Today's work plan..."></textarea>
+                </div>
+                <div class="section-box">
+                    <h3>DEADLINE</h3>
+                    <textarea class="input-line" rows="3" placeholder="Important deadlines..."></textarea>
+                </div>
+            </div>
+            <div class="list-box">
+                <h3>APPOINTMENTS</h3>
+                <ul>
+                    <li><input type="text" class="input-line" placeholder="Appointment 1 (time, details)"></li>
+                    <li><input type="text" class="input-line" placeholder="Appointment 2 (time, details)"></li>
+                    <li><input type="text" class="input-line" placeholder="Appointment 3 (time, details)"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <button id="saveButton">SAVE</button>
+    <div class="popup" id="savePopup">
+        Your daily plan saved successfully!
+    </div>
+
+    <script>
+        // JavaScript starts here
+        document.addEventListener('DOMContentLoaded', () => {
+            const saveButton = document.getElementById('saveButton');
+            const savePopup = document.getElementById('savePopup');
+            const dayCircles = document.querySelectorAll('.day-circle');
+
+            // Variable to keep track of the currently displayed date's plan
+            let currentPlanDate = new Date();
+
+            // Function to format a date as 'YYYY-MM-DD' for localStorage keys
+            function formatDate(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+            // Function to highlight the current day in the "S M T W T F S" circles
+            function highlightDayCircle(dateToHighlight) {
+                const dayIndex = dateToHighlight.getDay(); // 0 for Sunday, 1 for Monday, etc.
+                dayCircles.forEach(circle => {
+                    circle.classList.remove('highlight');
+                    if (parseInt(circle.dataset.day) === dayIndex) {
+                        circle.classList.add('highlight');
+                    }
+                });
+            }
+
+            // Function to save the daily plan for the currentPlanDate
+            function saveDailyPlan() {
+                const planData = {
+                    todoList: [],
+                    priorityList: [],
+                    schedule: {},
+                    meetings: "",
+                    projects: "",
+                    workPlan: "",
+                    deadline: "",
+                    appointments: [],
+                    notes: "",
+                    mood: ""
+                };
+
+                // Populate TO-DO LIST
+                document.querySelectorAll('.left-panel .list-box:first-of-type ul li').forEach(li => {
+                    const checkbox = li.querySelector('input[type="checkbox"]');
+                    const input = li.querySelector('.input-line');
+                    if (input && input.value.trim() !== '') {
+                        planData.todoList.push({
+                            text: input.value,
+                            checked: checkbox ? checkbox.checked : false
+                        });
+                    }
+                });
+
+                // Populate PRIORITY LIST
+                document.querySelectorAll('.right-panel .list-box:first-of-type ul li').forEach(li => {
+                    const input = li.querySelector('.input-line');
+                    if (input && input.value.trim() !== '') {
+                        planData.priorityList.push(input.value);
+                    }
+                });
+
+                // Populate SCHEDULE (contenteditable divs)
+                document.querySelectorAll('.schedule .time-slot').forEach(slot => {
+                    const time = slot.querySelector('.time').textContent;
+                    const event = slot.querySelector('.event').textContent.trim();
+                    if (event !== '' && event !== 'Add event...') {
+                        planData.schedule[time] = event;
+                    }
+                });
+
+                // Populate Meetings, Projects, Work Plan, Deadline (textareas)
+                planData.meetings = document.querySelector('.box-grid .section-box:nth-child(1) textarea').value;
+                planData.projects = document.querySelector('.box-grid .section-box:nth-child(2) textarea').value;
+                planData.workPlan = document.querySelector('.box-grid .section-box:nth-child(3) textarea').value;
+                planData.deadline = document.querySelector('.box-grid .section-box:nth-child(4) textarea').value;
+
+                // Populate APPOINTMENTS
+                document.querySelectorAll('.right-panel .list-box:last-of-type ul li').forEach(li => {
+                    const input = li.querySelector('.input-line');
+                    if (input && input.value.trim() !== '') {
+                        planData.appointments.push(input.value);
+                    }
+                });
+
+                // Populate NOTES (textarea)
+                planData.notes = document.querySelector('.notes-section textarea').value;
+
+                // Populate MOOD (text content of selected button)
+                const selectedMoodButton = document.querySelector('.mood-options button.selected');
+                planData.mood = selectedMoodButton ? selectedMoodButton.textContent : '';
+
+                // Store as a JSON string with date as key
+                localStorage.setItem(`dailyPlan_${formatDate(currentPlanDate)}`, JSON.stringify(planData));
+                console.log(`Daily plan for ${formatDate(currentPlanDate)} saved to Local Storage.`);
+            }
+
+            // Function to load the daily plan for a specific date
+            function loadDailyPlan(date) {
+                const savedPlan = localStorage.getItem(`dailyPlan_${formatDate(date)}`);
+                if (savedPlan) {
+                    const planData = JSON.parse(savedPlan);
+
+                    // Populate TO-DO LIST
+                    const todoListUl = document.querySelector('.left-panel .list-box:first-of-type ul');
+                    todoListUl.innerHTML = ''; // Clear existing items
+                    if (planData.todoList && planData.todoList.length > 0) {
+                        planData.todoList.forEach(item => {
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="checkbox" ${item.checked ? 'checked' : ''}><input type="text" class="input-line" value="${item.text}" placeholder="Add a to-do item...">`;
+                            todoListUl.appendChild(newLi);
+                        });
+                    } else {
+                        // Add default empty items if no saved data
+                        for (let i = 0; i < 5; i++) { // Default 5 items
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item...">`;
+                            todoListUl.appendChild(newLi);
+                        }
+                    }
+
+
+                    // Populate PRIORITY LIST
+                    const priorityListUl = document.querySelector('.right-panel .list-box:first-of-type ul');
+                    priorityListUl.innerHTML = ''; // Clear existing items
+                    if (planData.priorityList && planData.priorityList.length > 0) {
+                        planData.priorityList.forEach(item => {
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="text" class="input-line" value="${item}" placeholder="Add a priority item...">`;
+                            priorityListUl.appendChild(newLi);
+                        });
+                    } else {
+                        // Add default empty items if no saved data
+                        for (let i = 0; i < 4; i++) { // Default 4 items
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="text" class="input-line" placeholder="${i === 0 ? 'High priority item 1' : i === 1 ? 'High priority item 2' : i === 2 ? 'Medium priority item 3' : 'Low priority item 4'}">`;
+                            priorityListUl.appendChild(newLi);
+                        }
+                    }
+
+
+                    // Populate SCHEDULE (contenteditable divs)
+                    document.querySelectorAll('.schedule .time-slot').forEach(slot => {
+                        const time = slot.querySelector('.time').textContent;
+                        const eventDiv = slot.querySelector('.event');
+                        if (planData.schedule && planData.schedule[time]) {
+                            eventDiv.textContent = planData.schedule[time];
+                        } else {
+                            eventDiv.textContent = ''; // Clear if no event for this slot
+                        }
+                    });
+
+                    // Populate Meetings, Projects, Work Plan, Deadline (textareas)
+                    document.querySelector('.box-grid .section-box:nth-child(1) textarea').value = planData.meetings || '';
+                    document.querySelector('.box-grid .section-box:nth-child(2) textarea').value = planData.projects || '';
+                    document.querySelector('.box-grid .section-box:nth-child(3) textarea').value = planData.workPlan || '';
+                    document.querySelector('.box-grid .section-box:nth-child(4) textarea').value = planData.deadline || '';
+
+                    // Populate APPOINTMENTS
+                    const appointmentsUl = document.querySelector('.right-panel .list-box:last-of-type ul');
+                    appointmentsUl.innerHTML = ''; // Clear existing items
+                    if (planData.appointments && planData.appointments.length > 0) {
+                        planData.appointments.forEach(item => {
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="text" class="input-line" value="${item}" placeholder="Appointment (time, details)">`;
+                            appointmentsUl.appendChild(newLi);
+                        });
+                    } else {
+                        // Add default empty items if no saved data
+                        for (let i = 0; i < 3; i++) { // Default 3 items
+                            const newLi = document.createElement('li');
+                            newLi.innerHTML = `<input type="text" class="input-line" placeholder="Appointment ${i + 1} (time, details)">`;
+                            appointmentsUl.appendChild(newLi);
+                        }
+                    }
+
+
+                    // Populate NOTES (textarea)
+                    document.querySelector('.notes-section textarea').value = planData.notes || '';
+
+                    // Populate MOOD
+                    document.querySelectorAll('.mood-options button').forEach(button => {
+                        button.classList.remove('selected');
+                        if (button.textContent === planData.mood) {
+                            button.classList.add('selected');
+                        }
+                    });
+                    console.log(`Daily plan for ${formatDate(date)} loaded from Local Storage.`);
+                } else {
+                    console.log(`No saved plan found for ${formatDate(date)}. Loading default empty state.`);
+                    // If no plan is found, clear all fields to show a fresh state
+                    clearAllFields();
+                }
+            }
+
+            // Function to clear all input fields and reset sections to default empty state
+            function clearAllFields() {
+                // Clear TO-DO LIST
+                const todoListUl = document.querySelector('.left-panel .list-box:first-of-type ul');
+                todoListUl.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    const newLi = document.createElement('li');
+                    newLi.innerHTML = `<input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item...">`;
+                    todoListUl.appendChild(newLi);
+                }
+
+                // Clear PRIORITY LIST
+                const priorityListUl = document.querySelector('.right-panel .list-box:first-of-type ul');
+                priorityListUl.innerHTML = '';
+                for (let i = 0; i < 4; i++) {
+                    const newLi = document.createElement('li');
+                    newLi.innerHTML = `<input type="text" class="input-line" placeholder="${i === 0 ? 'High priority item 1' : i === 1 ? 'High priority item 2' : i === 2 ? 'Medium priority item 3' : 'Low priority item 4'}">`;
+                    priorityListUl.appendChild(newLi);
+                }
+
+                // Clear SCHEDULE (contenteditable divs)
+                document.querySelectorAll('.schedule .time-slot .event').forEach(eventDiv => {
+                    eventDiv.textContent = '';
+                });
+
+                // Clear textareas for Meetings, Projects, Work Plan, Deadline, Notes
+                document.querySelector('.box-grid .section-box:nth-child(1) textarea').value = ''; // Meetings
+                document.querySelector('.box-grid .section-box:nth-child(2) textarea').value = ''; // Projects
+                document.querySelector('.box-grid .section-box:nth-child(3) textarea').value = ''; // Work Plan
+                document.querySelector('.box-grid .section-box:nth-child(4) textarea').value = ''; // Deadline
+                document.querySelector('.notes-section textarea').value = ''; // Notes
+
+                // Clear APPOINTMENTS
+                const appointmentsUl = document.querySelector('.right-panel .list-box:last-of-type ul');
+                appointmentsUl.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const newLi = document.createElement('li');
+                    newLi.innerHTML = `<input type="text" class="input-line" placeholder="Appointment ${i + 1} (time, details)">`;
+                    appointmentsUl.appendChild(newLi);
+                }
+
+                // Deselect mood button
+                document.querySelectorAll('.mood-options button').forEach(button => {
+                    button.classList.remove('selected');
+                });
+            }
+
+
+            // --- Event Listeners ---
+
+            // Initial load and highlight for today
+            highlightDayCircle(currentPlanDate);
+            loadDailyPlan(currentPlanDate); // Load today's plan on page load
+
+            // Save button logic (uses existing popup)
+            if (saveButton && savePopup) {
+                saveButton.addEventListener('click', () => {
+                    saveDailyPlan();
+                    savePopup.style.display = 'block';
+                    setTimeout(() => {
+                        savePopup.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                });
+            } else {
+                console.error("Save button or popup element not found! Check your HTML IDs.");
+            }
+
+            // Mood selection functionality and auto-save
+            document.querySelectorAll('.mood-options button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.mood-options button').forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    saveDailyPlan(); // Auto-save when mood changes
+                });
+            });
+
+            // Add new to-do/priority/appointment items on Enter key press and auto-save
+            document.querySelectorAll('.list-box ul').forEach(ul => {
+                ul.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' && event.target.classList.contains('input-line')) {
+                        const isToDoList = ul.closest('.list-box').querySelector('h3').textContent.includes('TO-DO');
+                        const isPriorityList = ul.closest('.list-box').querySelector('h3').textContent.includes('PRIORITY');
+                        const isAppointmentsList = ul.closest('.list-box').querySelector('h3').textContent.includes('APPOINTMENTS');
+
+                        const newLi = document.createElement('li');
+                        if (isToDoList) {
+                            newLi.innerHTML = `<input type="checkbox"><input type="text" class="input-line" placeholder="Add a to-do item...">`;
+                        } else if (isPriorityList) {
+                            newLi.innerHTML = `<input type="text" class="input-line" placeholder="Add a priority item...">`;
+                        } else if (isAppointmentsList) {
+                            newLi.innerHTML = `<input type="text" class="input-line" placeholder="Appointment (time, details)">`;
+                        }
+                        ul.appendChild(newLi);
+                        const addedInput = newLi.querySelector('.input-line');
+                        if (addedInput) {
+                            addedInput.focus();
+                        }
+                        saveDailyPlan(); // Auto-save after adding new item
+                        event.preventDefault(); // Prevent default Enter key behavior
+                    }
+                });
+            });
+
+            // Day circle click functionality to load plans for different days and auto-save
+            dayCircles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    // Save the current plan before switching days
+                    saveDailyPlan();
+
+                    // Determine the new date based on the clicked day
+                    const clickedDayIndex = parseInt(circle.dataset.day);
+                    const today = new Date();
+                    let diff = clickedDayIndex - today.getDay();
+
+                    // Adjust diff to ensure we always move to the *current* week's day or the *next* week's day if the clicked day is in the past
+                    if (diff < 0) {
+                        diff += 7;
+                    }
+
+                    const newDate = new Date(today);
+                    newDate.setDate(today.getDate() + diff);
+
+                    currentPlanDate = newDate; // Update the global currentPlanDate
+                    highlightDayCircle(currentPlanDate); // Highlight the newly selected day
+                    loadDailyPlan(currentPlanDate); // Load the plan for the new date
+                });
+            });
+
+            // Auto-save on input for all text fields and textareas
+            document.querySelectorAll('.input-line, textarea').forEach(input => {
+                input.addEventListener('input', saveDailyPlan);
+            });
+
+            // Auto-save on input for contenteditable schedule events
+            document.querySelectorAll('.schedule .event').forEach(eventDiv => {
+                eventDiv.addEventListener('input', saveDailyPlan);
+            });
+
+            // Auto-save on change for checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', saveDailyPlan);
+            });
+        });
+        // JavaScript ends here
+    </script>
+</body>
+</html>
