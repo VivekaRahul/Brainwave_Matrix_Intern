@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>V-Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">V-shop</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
+      <a href="shop.html">Shop now</a>
+    </nav>
+   <div class="icons">
+       <div class="search-box">
+        <img src="search.png" alt="Search" />
+        <input type="text" id="searchInput" placeholder="Search..." />
+      </div>
+       <div class="cart-icon">
+
+        <a href="cart.html">
+          <img src="cart.png" alt="Cart" />
+           </a>
+        </div>
+    </div>
+
+ </header>
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+
+    if (searchInput) {
+      searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          const query = searchInput.value.trim().toLowerCase();
+
+          const routes = {
+            "western wear": "western.html",
+            "formal wear": "formal.html",
+            "ethnic wear": "ethnic.html",
+            "crop top": "crop.html",
+            "t-shirts": "tshirt.html",
+            "sundresses": "sundress.html",
+            "casual wear": "casual.html",
+            "denim dress": "denim.html"
+          };
+
+          if (routes[query]) {
+            window.location.href = routes[query];
+          } else {
+            alert("No results found for: " + query);
+          }
+        }
+      });
+    }
+  });
+
+</script>
+  <div class="hero-container">
+    <img src="sunbanner.png" class="banner-image" alt="Banner" />
+  </div>
+   <section class="product-section">
+    <h2 class="section-title">Explore Our Sundresses Collection</h2>
+    <div class="product-grid">
+
+        <div class="product-card">
+        <img src="sun1.png" alt="Dress 2">
+        <h3>Elegant Lavender Solid Sundress</h3>
+        <p><span class="price">Rs. 1599</span> <span class="offer">10% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun2.png" alt="Dress 2">
+        <h3>Pink Floral Sundress</h3>
+        <p><span class="price">Rs. 1299</span> <span class="offer">5% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun3.png" alt="Dress 2">
+        <h3>White Self-Design Sundress</h3>
+        <p><span class="price">Rs. 899</span> <span class="offer">10% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun4.png" alt="Dress 2">
+        <h3>Pink Colourblocked Sundress</h3>
+        <p><span class="price">Rs. 799</span> <span class="offer">10% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun5.png" alt="Dress 2">
+        <h3>Women Deep Multi Abstract Sundress Dress</h3>
+        <p><span class="price">Rs. 899</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun6.png" alt="Dress 2">
+        <h3>Women Enchanting Coral Solid Sundress</h3>
+        <p><span class="price">Rs. 999</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun7.png" alt="Dress 2">
+        <h3>Women Bright Yellow Solid Sundress</h3>
+        <p><span class="price">Rs. 1999</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun8.png" alt="Dress 2">
+        <h3>Women Stylish Blue Colourblocked Sundress Dress</h3>
+        <p><span class="price">Rs. 1499</span> <span class="offer">5% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun9.png" alt="Dress 2">
+        <h3>Florals Ruched A-Line Mini Sundress</h3>
+        <p><span class="price">Rs. 2199</span> <span class="offer">5% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun10.png" alt="Dress 2">
+        <h3>Beautiful Green Ethnic Motifs Sundress</h3>
+        <p><span class="price">Rs. 2519</span> <span class="offer">10% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun11.png" alt="Dress 2">
+        <h3>Dressberry Basics Polka Dot Print Square Neck Puff Sleeves Sundress Sheath Dress</h3>
+        <p><span class="price">Rs. 2699</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun12.png" alt="Dress 2">
+        <h3>Pink Print Georgette Fit & Flare Midi Dress</h3>
+        <p><span class="price">Rs. 899</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun13.png" alt="Dress 2">
+        <h3>Gorgeous Green Polka Dots Sundress</h3>
+        <p><span class="price">Rs. 799</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun14.png" alt="Dress 2">
+        <h3>Women Stunning Black Floral Sundress</h3>
+        <p><span class="price">Rs. 699</span> <span class="offer">15% OFF</span></p>
+      </div>
+
+       <div class="product-card">
+        <img src="sun15.png" alt="Dress 2">
+        <h3>Women Stunning pink Floral Sundress</h3>
+        <p><span class="price">Rs. 699</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun16.png" alt="Dress 2">
+        <h3>Women Stunning Lilac Sundress</h3>
+        <p><span class="price">Rs. 999</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun17.png" alt="Dress 2">
+        <h3>Women Stunning orange Sundress</h3>
+        <p><span class="price">Rs. 799</span> <span class="offer">10% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun18.png" alt="Dress 2">
+        <h3>Women Stunning brown Sundress</h3>
+        <p><span class="price">Rs. 879</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun19.png" alt="Dress 2">
+        <h3>Women Stunning Sundress</h3>
+        <p><span class="price">Rs. 799</span> <span class="offer">15% OFF</span></p>
+      </div>
+       <div class="product-card">
+        <img src="sun20.png" alt="Dress 2">
+        <h3>Women Stunning Blue Floral Sundress</h3>
+        <p><span class="price">Rs. 899</span> <span class="offer">10% OFF</span></p>
+      </div>
+
+
+
+    </div>
+   </section>
+    <footer class="site-footer">
+        <div class="footer-primary-content">
+            <div class="footer-column">
+                <h5>ONLINE SHOPPING</h5>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Beauty</a></li>
+                    <li><a href="#">GenZ</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Myntra Insider</a></li>
+                </ul>
+                <h5>USEFUL LINKS</h5>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                    <li><a href="#">Whitehat</a></li>
+                    <li><a href="#">Cleartrip</a></li>
+                    <li><a href="#">Myntra Global</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>CUSTOMER POLICIES</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">T&C</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                    <li><a href="#">Track Orders</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Cancellation</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Grievance Redressal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column app-download-column">
+                <h5>EXPERIENCE MYNTRA APP ON MOBILE</h5>
+                <div class="app-links">
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="google.png" alt="Google Play Store">
+                    </a>
+                    <a href="https://www.apple.com/app-store/" target="_blank">
+                        <img src="apple.png" alt="Apple App Store">
+                    </a>
+                </div>
+                <h5>KEEP IN TOUCH</h5>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram-square"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column guarantee-column">
+                <div class="guarantee-item">
+                    <img src="original.png" alt="100% Original">
+                    <p><strong>100% ORIGINAL</strong> guarantee for all products at V-Shop.</p>
+                </div>
+                <div class="guarantee-item">
+                    <img src="return.png" alt="Return Policy">
+                    <p><strong>Return within 14days</strong> of receiving your order</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-popular-searches">
+            <h5>POPULAR SEARCHES</h5>
+            <p>
+                <a href="#">Kurta Pajama</a> | <a href="#">Leather Jackets</a> | <a href="#">Sherwani</a> | <a href="#">Shirts</a> | <a href="#">T-Shirts</a> | <a href="#">Waistcoat</a> | <a href="#">Photo Frames</a> | <a href="#">Denim shirts</a> | <a href="#">Blazers</a> | <a href="#">Mirror</a> | <a href="#">Bags</a> | <a href="#">Jackets</a> | <a href="#">Blouse Designs</a> | <a href="#">Crop Tops</a> | <a href="#">Mysore Silk Saree</a> | <a href="#">Kids Lehenga</a> | <a href="#">Suit Design</a> | <a href="#">Lehenga</a> | <a href="#">Girls Dungarees</a> | <a href="#">Top for Girl</a> | <a href="#">Lingerie</a> | <a href="#">Gowns</a> | <a href="#">Saree</a> | <a href="#">Kids Ethnic Wear</a> | <a href="#">Sweaters</a> | <a href="#">Boys Games</a> | <a href="#">Barbie Doll</a> | <a href="#">Shoes For Men</a> | <a href="#">Cricket Shoes</a> | <a href="#">Lipstick</a> | <a href="#">Make Up Kit</a> | <a href="#">Fastrack Watches</a> | <a href="#">Casual Shoes</a> | <a href="#">Online Shopping</a> | <a href="#">Dresses</a> | <a href="#">Babydolls</a> | <a href="#">Eye Makeup</a> | <a href="#">Car Games</a> | <a href="#">Nike Shoes</a> | <a href="#">Puma</a> | <a href="#">United Colors of Benetton</a> | <a href="#">Fastrack</a> | <a href="#">Watches</a> | <a href="#">Backpacks</a> | <a href="#">Men Kurtas</a> | <a href="#">Titan Watches</a>
+            </p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-contact-info">
+                In case of any concern, <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 V-Shop. All rights reserved.
+            </div>
+            <div class="footer-payment-partners">
+                A Flipkart company
+            </div>
+        </div>
+    </footer> 
+
+
+
+</body>
+</html>

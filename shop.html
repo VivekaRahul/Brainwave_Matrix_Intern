@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Shop - All Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">V-shop</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#contact">Contact Us</a>
+            <a href="shop.html">Shop now</a>
+        </nav>
+        
+     <div class="icons">
+       <div class="search-box">
+        <img src="search.png" alt="Search" />
+        <input type="text" id="searchInput" placeholder="Search..." />
+      </div>
+       <div class="cart-icon">
+
+        <a href="cart.html">
+          <img src="cart.png" alt="Cart" />
+           </a>
+        </div>
+    </div>
+
+    </header>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+
+    if (searchInput) {
+      searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          const query = searchInput.value.trim().toLowerCase();
+
+          const routes = {
+            "western wear": "western.html",
+            "formal wear": "formal.html",
+            "ethnic wear": "ethnic.html",
+            "crop top": "crop.html",
+            "t-shirts": "tshirt.html",
+            "sundresses": "sundress.html",
+            "casual wear": "casual.html",
+            "denim dress": "denim.html"
+          };
+
+          if (routes[query]) {
+            window.location.href = routes[query];
+          } else {
+            alert("No results found for: " + query);
+          }
+        }
+      });
+    }
+  });
+
+</script>
+
+    <main>
+        <section class="shop-hero-banner">
+            <img src="img5.webp" alt="Casual Fashion Banner" class="full-width-banner">
+            
+        </section>
+
+        <section class="carousel-section">
+            <h2>Our Trending Outfits</h2>
+            <div class="carousel-container">
+                <button class="carousel-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-items-wrapper">
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress3.png" alt="Beige Long Coat">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Fashion Nova</h3>
+                            <p class="product-name">Elegant Beige Trench Coat</p>
+                            <p class="product-price">Rs. 3499 <span class="original-price">Rs. 6999</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress6.png" alt="Pink Tiered Midi Dress">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Boho Chic</h3>
+                            <p class="product-name">Fuchsia Tiered Midi Dress</p>
+                            <p class="product-price">Rs. 1899 <span class="original-price">Rs. 3799</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress7.png" alt="Pink Ribbed Knit Dress">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Urban Threads</h3>
+                            <p class="product-name">Pink Ribbed Knit Midi Dress</p>
+                            <p class="product-price">Rs. 1599 <span class="original-price">Rs. 3199</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress4.png" alt="Blue Shimmer Jumpsuit">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Glamour Attire</h3>
+                            <p class="product-name">Sparkling Blue Jumpsuit</p>
+                            <p class="product-price">Rs. 2499 <span class="original-price">Rs. 4999</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress8.png" alt="Pink Oversized T-shirt">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Street Style</h3>
+                            <p class="product-name">"Energy" Oversized Tee</p>
+                            <p class="product-price">Rs. 799 <span class="original-price">Rs. 1599</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress2.png" alt="White Printed Maxi Dress">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Summer Breeze</h3>
+                            <p class="product-name">Printed Tiered Maxi Dress</p>
+                            <p class="product-price">Rs. 1699 <span class="original-price">Rs. 3399</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress1.png" alt="Maroon Kurta Set">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Ethnic Elegance</h3>
+                            <p class="product-name">Maroon Embellished Kurta Set</p>
+                            <p class="product-price">Rs. 2199 <span class="original-price">Rs. 4399</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                     <div class="product-item">
+                        <div class="product-image">
+                            <img src="dress5.png" alt="Pink Top with Jeans">
+                            </div>
+                        <div class="product-details">
+                            <h3 class="product-brand">Casual Wear</h3>
+                            <p class="product-name">One-Shoulder Top & Jeans</p>
+                            <p class="product-price">Rs. 1299 <span class="original-price">Rs. 2599</span> <span class="discount">(50% OFF)</span></p>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+
+        <section class="banner-carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-items-wrapper">
+                <div class="carousel-slide-item">
+                    <img src="slide1.png" alt="Sale Upto 50% Off">
+                </div>
+                <div class="carousel-slide-item">
+                    <img src="slide2.png" alt="AND Up To 50% Off">
+                </div>
+                <div class="carousel-slide-item">
+                    <img src="slide3.png" alt="New Buyers Get 5% Off">
+                </div>
+                <div class="carousel-slide-item">
+                    <img src="slide4.png" alt="Sale Up To 50% Off">
+                </div>
+                <!-- Add more slide items here if you have more banner images -->
+            </div>
+            <button class="carousel-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side1.png" alt="Tokyo Talkies Sheath Midi Dress">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Tokyo Talkies</h3>
+                <p class="product-subtitle">Sheath Midi Dress</p>
+                <div class="price-info">
+                    <span class="current-price">₹344</span>
+                    <span class="mrp">MRP ₹2299</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+                
+              <!-- ADD TO BAG button -->
+                  <button class="add-to-bag-btn" onclick="addToCart()">ADD TO BAG</button>
+
+
+<!-- GO TO CART button -->
+
+
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+    
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side2.png" alt="Nikita Vishakha">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Nikita Vishakha</h3>
+                <p class="product-subtitle">Floral Print Georgette Maxi Dress</p>
+                <div class="price-info">
+                    <span class="current-price">₹18000</span>
+                    <span class="mrp">MRP ₹22990</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                    <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+    
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side3.png" alt="TFemvy">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Femvy</h3>
+                <p class="product-subtitle">Floral Print flared Sleeves Smocked Fit & Flare Midi Dress</p>
+                <div class="price-info">
+                    <span class="current-price">₹499</span>
+                    <span class="mrp">MRP ₹999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                 <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+    
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side4.png" alt="Jash Creation">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Jash Creation</h3>
+                <p class="product-subtitle">Striped Puff Sleeves Fit & Flare Midi Dress</p>
+                <div class="price-info">
+                    <span class="current-price">₹499</span>
+                    <span class="mrp">MRP ₹1999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                    <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+    
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side5.png" alt="SHOPGARB">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">SHOPGARB</h3>
+                <p class="product-subtitle">Floral Printed Tie-Up Neck Fit And Flare Georgette Dress</p>
+                <div class="price-info">
+                    <span class="current-price">₹499</span>
+                    <span class="mrp">MRP ₹2999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+         
+    </section>
+    <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side6.png" alt="Global Desi">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Global Desi</h3>
+                <p class="product-subtitle">Women Peach Pink & Gold-toned Embellished Paneled Flared Maxi Skirt</p>
+                <div class="price-info">
+                    <span class="current-price">₹2999</span>
+                    <span class="mrp">MRP ₹5999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side7.png" alt="GoSriKi">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">GoSriKi</h3>
+                <p class="product-subtitle">Women Kurta with Trousers & Dupatta set</p>
+                <div class="price-info">
+                    <span class="current-price">₹2999</span>
+                    <span class="mrp">MRP ₹8999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side8.png" alt="KALINI">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">KALINI</h3>
+                <p class="product-subtitle">Floral Printed Anarkali Pure Cotton Kurta with Trousers & Dupatta</p>
+                <div class="price-info">
+                    <span class="current-price">₹1999</span>
+                    <span class="mrp">MRP ₹3999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side9.png" alt="Anouk">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Anouk</h3>
+                <p class="product-subtitle">Floral Printed Bell Sleeves Thread Work Pure Cotton A-Line Kurta With</p>
+                <div class="price-info">
+                    <span class="current-price">₹1499</span>
+                    <span class="mrp">MRP ₹3999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+                     <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+     <section class="product-detail-showcase">
+        <div class="showcase-content-wrapper">
+            <div class="showcase-image">
+                <img src="side10.png" alt="Varanga">
+            </div>
+            <div class="showcase-details">
+                <h3 class="product-title">Varanga</h3>
+                <p class="product-subtitle">Floral Zari Embroidered Chanderi Silk Kurta With Trouser & Sequined Dupatta.</p>
+                <div class="price-info">
+                    <span class="current-price">₹2599</span>
+                    <span class="mrp">MRP ₹5999</span>
+                    <span class="discount-percent">(85% OFF)</span>
+                </div>
+                <p class="tax-info">inclusive of all taxes</p>
+
+
+                <div class="size-selection">
+                    <h4>SELECT SIZE <a href="#" class="size-chart-link">SIZE CHART ></a></h4>
+ <span class="size-error-message"></span> <!-- INSERT IT HERE -->
+                    <div class="size-options">
+                        <button class="size-btn">XS</button>
+                        <button class="size-btn">S</button>
+                        <button class="size-btn">M</button>
+                        <button class="size-btn">L</button>
+                        <button class="size-btn">XL</button>
+                    </div>
+                </div>
+
+                <button class="add-to-bag-btn">ADD TO BAG</button>
+                <!-- WISHLIST button removed -->
+            </div>
+        </div>
+
+         
+    </section>
+
+
+    <footer class="site-footer">
+        <div class="footer-primary-content">
+            <div class="footer-column">
+                <h5>ONLINE SHOPPING</h5>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">Home & Living</a></li>
+                    <li><a href="#">Beauty</a></li>
+                    <li><a href="#">GenZ</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Myntra Insider</a></li>
+                </ul>
+                <h5>USEFUL LINKS</h5>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                    <li><a href="#">Whitehat</a></li>
+                    <li><a href="#">Cleartrip</a></li>
+                    <li><a href="#">Myntra Global</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>CUSTOMER POLICIES</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">T&C</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                    <li><a href="#">Track Orders</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Cancellation</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Grievance Redressal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column app-download-column">
+                <h5>EXPERIENCE MYNTRA APP ON MOBILE</h5>
+                <div class="app-links">
+                    <a href="https://play.google.com/store" target="_blank">
+                        <img src="google.png" alt="Google Play Store">
+                    </a>
+                    <a href="https://www.apple.com/app-store/" target="_blank">
+                        <img src="apple.png" alt="Apple App Store">
+                    </a>
+                </div>
+                <h5>KEEP IN TOUCH</h5>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram-square"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column guarantee-column">
+                <div class="guarantee-item">
+                    <img src="original.png" alt="100% Original">
+                    <p><strong>100% ORIGINAL</strong> guarantee for all products at V-Shop.</p>
+                </div>
+                <div class="guarantee-item">
+                    <img src="return.png" alt="Return Policy">
+                    <p><strong>Return within 14days</strong> of receiving your order</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-popular-searches">
+            <h5>POPULAR SEARCHES</h5>
+            <p>
+                <a href="#">Kurta Pajama</a> | <a href="#">Leather Jackets</a> | <a href="#">Sherwani</a> | <a href="#">Shirts</a> | <a href="#">T-Shirts</a> | <a href="#">Waistcoat</a> | <a href="#">Photo Frames</a> | <a href="#">Denim shirts</a> | <a href="#">Blazers</a> | <a href="#">Mirror</a> | <a href="#">Bags</a> | <a href="#">Jackets</a> | <a href="#">Blouse Designs</a> | <a href="#">Crop Tops</a> | <a href="#">Mysore Silk Saree</a> | <a href="#">Kids Lehenga</a> | <a href="#">Suit Design</a> | <a href="#">Lehenga</a> | <a href="#">Girls Dungarees</a> | <a href="#">Top for Girl</a> | <a href="#">Lingerie</a> | <a href="#">Gowns</a> | <a href="#">Saree</a> | <a href="#">Kids Ethnic Wear</a> | <a href="#">Sweaters</a> | <a href="#">Boys Games</a> | <a href="#">Barbie Doll</a> | <a href="#">Shoes For Men</a> | <a href="#">Cricket Shoes</a> | <a href="#">Lipstick</a> | <a href="#">Make Up Kit</a> | <a href="#">Fastrack Watches</a> | <a href="#">Casual Shoes</a> | <a href="#">Online Shopping</a> | <a href="#">Dresses</a> | <a href="#">Babydolls</a> | <a href="#">Eye Makeup</a> | <a href="#">Car Games</a> | <a href="#">Nike Shoes</a> | <a href="#">Puma</a> | <a href="#">United Colors of Benetton</a> | <a href="#">Fastrack</a> | <a href="#">Watches</a> | <a href="#">Backpacks</a> | <a href="#">Men Kurtas</a> | <a href="#">Titan Watches</a>
+            </p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-contact-info">
+                In case of any concern, <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 V-Shop. All rights reserved.
+            </div>
+            <div class="footer-payment-partners">
+                A Flipkart company
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

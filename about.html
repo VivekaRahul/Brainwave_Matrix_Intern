@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About V-Shop - Learn More</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">V-shop</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#contact">Contact Us</a>
+            <a href="index.html#shop">Shop now</a>
+        </nav>
+       <div class="icons">
+       <div class="search-box">
+        <img src="search.png" alt="Search" />
+        <input type="text" id="searchInput" placeholder="Search..." />
+      </div>
+       <div class="cart-icon">
+
+        <a href="cart.html">
+          <img src="cart.png" alt="Cart" />
+           </a>
+        </div>
+    </div>
+
+    </header>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+
+    if (searchInput) {
+      searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          const query = searchInput.value.trim().toLowerCase();
+
+          const routes = {
+            "western wear": "western.html",
+            "formal wear": "formal.html",
+            "ethnic wear": "ethnic.html",
+            "crop top": "crop.html",
+            "t-shirts": "tshirt.html",
+            "sundresses": "sundress.html",
+            "casual wear": "casual.html",
+            "denim dress": "denim.html"
+          };
+
+          if (routes[query]) {
+            window.location.href = routes[query];
+          } else {
+            alert("No results found for: " + query);
+          }
+        }
+      });
+    }
+  });
+
+</script>
+
+    <main>
+        
+        <section class="full-about-us">
+            <div class="about-content-full">
+                <h2>Our Story & Vision</h2>
+                <p>
+                    Welcome to V-Shop, your ultimate destination for fashion that empowers and inspires. Founded with a passion for bringing unique and high-quality apparel exclusively for women, we've grown into a brand dedicated to celebrating individual style and confidence.
+                </p>
+                <p>
+                    Our journey began with a simple idea: to create a platform where women could discover fashion that truly resonates with their personality, without compromising on quality or value. We meticulously handpick every piece in our collection, focusing on trendsetting designs, luxurious fabrics, and impeccable craftsmanship. We believe that what you wear is an extension of who you are, and every outfit should tell your story.
+                </p>
+
+                <div class="fashion-modern-section">
+                    <img src="img4.jpg" alt="Fashion Modern Collection" class="fashion-modern-image">
+                    <div class="fashion-modern-text">
+                        <h3>V-Style</h3>
+                        <p>
+                            Embrace contemporary styles with our latest "Fashion Modern" collection. We bring you cutting-edge designs that blend timeless elegance with modern trends, ensuring you stay ahead in the fashion game. Discover pieces that are both sophisticated and effortlessly chic, perfect for the modern woman.
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    At V-Shop, we're not just selling clothes; we're building a community. We are committed to fostering an inclusive environment where every woman feels seen, valued, and beautiful. Our mission extends beyond fashion to embrace sustainability and ethical practices, ensuring that our growth contributes positively to the world.
+                </p>
+                <h3>Our Values:</h3>
+                <ul>
+                    <li><strong>Quality First:</strong> We prioritize premium materials and construction for lasting wear.</li>
+                    <li><strong>Empowerment Through Style:</strong> Helping women feel confident and express themselves.</li>
+                    <li><strong>Innovation & Trends:</strong> Continuously bringing fresh, exciting, and unique designs.</li>
+                    <li><strong>Customer Centricity:</strong> Providing an exceptional and seamless shopping experience.</li>
+                    <li><strong>Ethical Sourcing:</strong> Committed to responsible practices throughout our supply chain.</li>
+                </ul>
+                <p>
+                    Thank you for choosing V-Shop. We invite you to explore our collections and become a part of our growing family. Together, let's redefine fashion, one confident step at a time.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
